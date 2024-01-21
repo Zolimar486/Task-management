@@ -7,15 +7,16 @@ export const login= async(dispatch,data)=>{
   
  
   try{
-    const res= await axios.post('http://localhost:5000/api/auth/login', data, { withCredentials: true })
+    const res= await axios.post('https://tired-worm-windbreaker.cyclic.app/api/auth/login', data, { withCredentials: true })
       dispatch(loginSuccess(res.data))
        //
       
       return true
 
   }catch(error){
-   dispatch(loginFailure(error))
-   return false
+    console.error('Login error:', error);
+    dispatch(loginFailure(error));
+    return false;
   
   }
 }
