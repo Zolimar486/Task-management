@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const cors= require('cors')
 const cookieParser= require('cookie-parser')
+const path = require("path")
 const app = express();
 dotenv.config()
 
@@ -21,13 +22,22 @@ mongoose.connect(process.env.MONGO_URL)
 //Middleware functions
 app.use(express.json({limit:'50mb'}))
 app.use(express.urlencoded({extended: true, limit:'50mb'}))
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors());
+app.use(express.static(path.join(__dirname, 'build')));
 app.use(cookieParser())
 app.use(express.json())
 app.use('/api/auth', authRouter)
 app.use('/api/users', userRouter)
 app.use('/api/auth', authGoogle)
 app.use('/api/task', taskRouter)
+
+//Api Get Request to deploy server side
+
+
+app.get('/', async(req,res) => {
+  res.status(200).json({message :"Successfully Conected"})
+})
+
 
 //Customize Error
 app.use((err, req, res, next) => {
