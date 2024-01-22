@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 // Task.jsx
 
 import { userRequest} from '../request'
+import axios from "axios";
 
 
 
@@ -21,7 +22,7 @@ export const getTask = createAsyncThunk('task/getTask', async(userId)=>{
 export const createTask = createAsyncThunk('createTask/task', async(data)=>{
 
   try{
-    const res= await userRequest.post('/task/', data)
+    const res= await axios.post('https://tired-worm-windbreaker.cyclic.app/api/task/', data)
     console.log("new task", res.data)
     return res.data
 

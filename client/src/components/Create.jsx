@@ -172,8 +172,10 @@ export default function Create({setOpen}){
         user
       }
 
-      
+      console.log('Task Data:', data); //
         await dispatch(createTask(data));
+
+        console.log('Task created successfully'); 
         
         setOpen(false);
       
@@ -183,6 +185,8 @@ export default function Create({setOpen}){
     }
 
   }
+
+  
 
  
   return(
