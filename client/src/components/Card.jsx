@@ -1,16 +1,12 @@
 import styled from 'styled-components'
-import { cards } from '../Dummy/cards'
 import { spacing } from '../utilities/spacing'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashCan, faPenToSquare,faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import {useState, useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getTask} from '../redux/taskSlice'
-import { userRequest } from '../request'
 import Filters from './Filters'
 import Task from './Task'
-import Search from './Search'
-import { setSearchQuery } from '../redux/searchSlice'
 import Pagination from './Pagination'
 
 
