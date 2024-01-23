@@ -177,7 +177,7 @@ export default function Create({setOpen}){
       console.log('Task Data:', data); //
       await dispatch(createTask(data));
 
-      console.log('Task created successfully'); 
+      console.log('Task created successfully');
       
       setOpen(false);
     
