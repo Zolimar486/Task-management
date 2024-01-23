@@ -8,6 +8,8 @@ import 'react-datepicker/dist/react-datepicker.css'
 import { createTask } from '../redux/taskSlice'
 import {useDispatch, useSelector} from 'react-redux'
 import { getTask } from '../redux/taskSlice'
+import axios from 'axios'
+import { userRequest } from '../request'
 
 const Container = styled.div`
 font-family:'Poppins', sans-serif;
@@ -171,14 +173,14 @@ export default function Create({setOpen}){
         status,
         user
       }
-
+    
       console.log('Task Data:', data); //
-        await dispatch(createTask(data));
+      await dispatch(createTask(data));
 
-        console.log('Task created successfully'); 
-        
-        setOpen(false);
+      console.log('Task created successfully'); 
       
+      setOpen(false);
+    
 
     }catch(err){
       console.log(err)

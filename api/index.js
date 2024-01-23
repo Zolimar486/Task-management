@@ -6,7 +6,7 @@ const path = require("path")
 const app = express();
 dotenv.config()
 app.use(cors());
-app.options("*", cors())
+
 
 
 //Imports of Routers

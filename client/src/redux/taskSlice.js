@@ -22,12 +22,13 @@ export const getTask = createAsyncThunk('task/getTask', async(userId)=>{
 export const createTask = createAsyncThunk('createTask/task', async(data)=>{
 
   try{
-    const res= await axios.post('https://tired-worm-windbreaker.cyclic.app/api/task/', data)
+    const res= await userRequest.post('/task/', data)
     console.log("new task", res.data)
     return res.data
 
   }catch(err){
-    console.log(err)
+    console.log(err.response.data);
+    throw err; 
   }
 
 })
@@ -96,7 +97,8 @@ const taskSlice = createSlice({
     
     [createTask.fulfilled]:(state,action)=>{
       state.isFetching= false;
-      state.tasks=action.payload;
+      console.log("Newly created task:", action.payload);
+      state.tasks = [...state.tasks, action.payload]; 
     },
    
     

@@ -1,3 +1,4 @@
+import { publicRequest } from "../request";
 import { loginStart, loginSuccess, loginFailure } from "./userSlice";
 import axios from 'axios';
 
@@ -7,11 +8,9 @@ export const login= async(dispatch,data)=>{
   
  
   try{
-    const res= await axios.post('https://tired-worm-windbreaker.cyclic.app/api/auth/login', data, { withCredentials: true })
+    const res= await publicRequest.post('/auth/login', data)
       dispatch(loginSuccess(res.data))
-       //
-      
-      return true
+     
 
   }catch(error){
     console.error('Login error:', error);

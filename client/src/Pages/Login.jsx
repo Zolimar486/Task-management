@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import { login } from '../redux/apiCalls'
 import { useHistory } from 'react-router-dom'; 
 import Auth from '../components/Auth'
-
+import { loginUser } from '../redux/userSlice'
 
 
 
@@ -163,27 +163,29 @@ export default function Login() {
   const handleSubmit = async(e)=>{
     e.preventDefault()
     
-    const data= {
-      username,
-      password
-    }
-  
     
-    const success= await login(dispatch, data)
-    
+
+
+    try {
+
+      const data ={
+        username,
+        password
+      }
+
+    const success= await   dispatch(loginUser(data));
     
     if(success){
-      
-   window.location.reload()
-    
-    setMessage(true)
-
+      window.location.reload()
     }
 
+    setMessage(true)
+
+    } catch (error) {
+      console.log(error)
+    }
     
-    
-   
-   
+     
    
   }
 

@@ -359,11 +359,13 @@ export default function Navbar(){
   //starting the process of Searching
 
   useEffect(() => {
-    // Your debounced search logic
+    console.log("Current task:", task);
     const searchTimeout = setTimeout(() => {
       const regex = new RegExp(searchText, 'i');
       const searchResults = filterTask(task,regex);
       dispatch(setSearchResults(searchResults));
+
+      console.log("search", searchResults)
     }, 500);
 
     return () => clearTimeout(searchTimeout); // Clear the timeout on unmount or when the searchText changes
