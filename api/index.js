@@ -21,6 +21,12 @@ mongoose.connect(process.env.MONGO_URL)
 .catch((err)=> console.log(err))
 
 //Middleware functions
+
+app.use(cors({
+  origin: 'https://task-management-seven-nu.vercel.app',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+}));
 app.use(express.json({limit:'50mb'}))
 app.use(express.urlencoded({extended: true, limit:'50mb'}))
 app.use(express.static(path.join(__dirname, 'build')));
