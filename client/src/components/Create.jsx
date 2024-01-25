@@ -10,6 +10,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import { getTask } from '../redux/taskSlice'
 import axios from 'axios'
 import { userRequest } from '../request'
+import { TOKEN } from '../request'
 
 const Container = styled.div`
 font-family:'Poppins', sans-serif;
@@ -160,7 +161,8 @@ export default function Create({setOpen}){
 
 
   
-  const handleSubmit= async ()=>{
+  const handleSubmit= async (e)=>{
+    e.preventDefault(); 
 
     setLoading(true)
     try{
@@ -173,19 +175,19 @@ export default function Create({setOpen}){
         status,
         user
       }
-    
-      console.log('Task Data:', data); //
-      await dispatch(createTask(data));
-
-      console.log('Task created successfully');
       
-      setOpen(false);
+      
+    const res = await dispatch(createTask(data));
+    console.log('Response from server:', res.data);
+
+    res.data && dispatch(getTask(user))
     
-
-    }catch(err){
-      console.log(err)
-    }
-
+    setOpen(false);
+    
+  } catch (err) {
+    // Handle network or other errors
+    console.error('Error creating task:', err.message);
+  } 
   }
 
   
