@@ -148,7 +148,13 @@ export default function Create({setOpen}){
   const [loading, setLoading]= useState(false)
   const [status, setStatus] = useState("")
   const dispatch= useDispatch()
-  const user= useSelector((state)=> state.user.currentUser?._id)
+  const user = useSelector((state) => state.user.currentUser) 
+
+  const id = user?._id ||  user?.user?._id 
+
+  console.log("Id user", id)
+
+
 
 
   
@@ -173,7 +179,7 @@ export default function Create({setOpen}){
         priority,
         dueDate:dueDate,
         status,
-        user
+        user: id
       }
       
       
