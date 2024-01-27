@@ -4,17 +4,6 @@ import { publicRequest, userRequest} from '../request'
 
 
 
-export const loginUser = createAsyncThunk('user/loginUser', async ({ username, password }) => {
-  try {
-    const response = await publicRequest.post('/auth/login', { username, password });
-    return response.data;
-  } catch (error) {
-    console.log('Login User Action Error:', error);
-    throw error;
-  }
-});
-
-
 export const updateUser= createAsyncThunk('user/updateUser', async({data, id})=>{
   
   try {
@@ -42,7 +31,18 @@ const userSlice= createSlice({
 
   reducers:{
     
-
+    loginStart: (state) => {
+      state.loading = true;
+    },
+    loginSuccess: (state, action) => {
+      state.currentUser = action.payload;
+      state.loading = false;
+      state.error = false;
+    },
+    loginFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
     
   logOut:(state)=>{
       state.currentUser=null;
@@ -56,20 +56,6 @@ const userSlice= createSlice({
 
   extraReducers:{
 
-
-    [loginUser.pending]: (state) => {
-      state.loading = true;
-    },
-    [loginUser.fulfilled]: (state, action) => {
-      state.currentUser = action.payload;
-      state.loading = false;
-      state.error = false;
-    },
-    [loginUser.rejected]: (state, action) => {
-      state.currentUser = null;
-      state.loading = false;
-      state.error = action.error.message;
-    },
 
     [updateUser.pending]:(state)=>{
       state.loading=true;
