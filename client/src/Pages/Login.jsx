@@ -186,8 +186,8 @@ export default function Login() {
       const response = await res.json();
       
       dispatch(loginSuccess(response));
-      history.push('/')
-      
+      window.location.reload()
+      setMessage(true)
     } catch (error) {
       dispatch(loginFailure(error));
     }
