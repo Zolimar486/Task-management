@@ -1,20 +1,27 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const BASE_URL = "https://tired-worm-windbreaker.cyclic.app/api/";
 
-export const TOKEN =JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)?.currentUser?.token || "";
+// Retrieve the token from localStorage
+const persistedRoot = JSON.parse(localStorage.getItem("persist:root"));
+const currentUser = JSON.parse(persistedRoot?.user || "{}").currentUser;
+const TOKEN = currentUser ? currentUser.token : "";
 
 console.log("Token", TOKEN)
+
+
+
+
+
 export const publicRequest = axios.create({
 
   baseURL: BASE_URL,
 });
 
+
+
 export const userRequest = axios.create({
   baseURL: BASE_URL,
-  headers: { token: `Bearer ${TOKEN}` } 
+  headers: { token: `Bearer ${TOKEN}` },
+
 });
-
-
-
-
