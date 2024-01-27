@@ -272,8 +272,8 @@ export default function Task({item}){
   const [title, setTitle]= useState("")
   const [description, setDescription]=useState("")
   const [priority, setPriority]= useState("")
-  const userId= useSelector((state)=> state.user.currentUser?._id )
-
+  const user = useSelector((state) => state.user.currentUser) 
+  const userId = user?._id ||  user?.user?._id 
   const data= {
     title,
     description,
