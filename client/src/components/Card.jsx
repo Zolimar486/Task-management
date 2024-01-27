@@ -8,6 +8,7 @@ import { getTask} from '../redux/taskSlice'
 import Filters from './Filters'
 import Task from './Task'
 import Pagination from './Pagination'
+import { userRequest } from '../request'
 
 
 const Container = styled.div`
@@ -265,7 +266,6 @@ export default function Card() {
   const [filter, setFilter]= useState("")
   const [filterTask, setFilterTask]= useState([])
   const dispatch = useDispatch()
-  const userId= useSelector((state)=> state.user.currentUser?._id )
   const [title, setTitle]= useState("")
   const [description, setDescription]=useState("")
   const [priority, setPriority]= useState("")
@@ -273,6 +273,13 @@ export default function Card() {
   const [tasksPerPage] = useState(2);
   const task = useSelector((state)=> state.task.tasks )
   const { searchText, searchResults} = useSelector((state) => state.search);
+  const user = useSelector((state) => state.user.currentUser) 
+
+  const userId= user?._id ||  user?.user?._id  
+
+
+
+  
 
 // Indexing and carrying out the paginate processs
 const indexOfLastTask = currentPage * tasksPerPage;
@@ -283,19 +290,19 @@ if (Array.isArray(task)) {
   currentTasks = task.slice(indexOfFirstTask, indexOfLastTask);
 } else {
   console.error("Task is not an array or is undefined");
-  // Handle the case where task is not an array
-  // For instance, you might set a default value or handle the error accordingly
+  
 }
 
 const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 
-///Feching Data from users
+// fetching data process
 
   useEffect(()=>{
 
    if (userId) {
      dispatch(getTask(userId));
+   
    }
   
   },[dispatch, userId])
