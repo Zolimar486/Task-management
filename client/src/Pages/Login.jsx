@@ -4,10 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark, faCloudArrowUp, faUserSlash } from '@fortawesome/free-solid-svg-icons'
 import {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { login } from '../redux/apiCalls'
+//import { login } from '../redux/apiCalls'
 import { useHistory } from 'react-router-dom'; 
 import Auth from '../components/Auth'
-import { loginUser } from '../redux/userSlice'
+//import { loginUser } from '../redux/userSlice'
+import {loginStart,loginSuccess, loginFailure} from '../redux/userSlice'
 
 
 
@@ -163,28 +164,33 @@ export default function Login() {
   const handleSubmit = async(e)=>{
     e.preventDefault()
     
-    
-
-
     try {
-
       const data ={
         username,
         password
       }
 
-    const success= await   dispatch(loginUser(data));
+
+
+      dispatch(loginStart());
+
     
-    if(success){
-      window.location.reload()
-    }
 
-    setMessage(true)
-
+      const res = await fetch('https://tired-worm-windbreaker.cyclic.app/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      const response = await res.json();
+      
+      dispatch(loginSuccess(response));
+      
     } catch (error) {
-      console.log(error)
+      dispatch(loginFailure(error));
     }
-    
+  
      
    
   }
