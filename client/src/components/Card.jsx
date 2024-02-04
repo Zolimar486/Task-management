@@ -313,7 +313,7 @@ const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const value = e.target.value;
 
  setFilter({
-   [e.target.name]:value
+   [e.target.name]:value.toLowerCase() 
   })
 
   }
@@ -324,7 +324,7 @@ const paginate = (pageNumber) => setCurrentPage(pageNumber);
    
    if (filter) {
     setFilterTask(
-       task.filter(item => Object.entries(filter).every(([key,value])=> item[key].includes(value)))
+       task.filter(item => Object.entries(filter).every(([key,value])=> item[key].toLowerCase().includes(value)))
      )
  
   }
