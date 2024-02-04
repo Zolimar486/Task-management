@@ -350,7 +350,7 @@ const paginate = (pageNumber) => setCurrentPage(pageNumber);
           <Select name="status" onChange={handleChange} >
             <Option >Status</Option>
             <Option>Pending</Option>
-            <Option>In Progress</Option>
+            <Option>Incomplete</Option>
             <Option>Completed</Option>
           </Select>
       </FilterContainer>
