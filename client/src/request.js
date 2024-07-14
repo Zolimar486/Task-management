@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = "https://tired-worm-windbreaker.cyclic.app/api/";
+const BASE_URL = "https://task-management-xfw3.onrender.com/api/";
 
 // Retrieve the token from localStorage
 const persistedRoot = JSON.parse(localStorage.getItem("persist:root"));

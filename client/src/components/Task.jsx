@@ -357,7 +357,7 @@ const handleUpdateTaskStatus = async (id) => {
             <SelectStatus>
             <OptionStatus >Status</OptionStatus>
             <OptionStatus>Pending</OptionStatus>
-            <OptionStatus>In Progress</OptionStatus>
+            <OptionStatus>Incomplete</OptionStatus>
             <OptionStatus>Completed</OptionStatus>
           </SelectStatus>
             

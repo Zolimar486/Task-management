@@ -39,7 +39,7 @@ export default function Auth(){
       const auth= getAuth(app)
       const result = await signInWithPopup(auth, provider)
       console.log('Google Auth Result:', result)
-      const res= await axios.post('https://tired-worm-windbreaker.cyclic.app/api/auth/google', {
+      const res= await axios.post('https://task-management-xfw3.onrender.com/api/auth/google', {
         name:result.user.displayName,
         email:result.user.email,
         photo:result.user.photoURL,
