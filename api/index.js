@@ -27,6 +27,9 @@ app.use(express.json())
 app.use(cors());
 
 
+app.get('/api/ping', (req, res)=>{
+  res.status(200).json("Server is awake")
+})
 app.use('/api/auth', authRouter)
 app.use('/api/users', userRouter)
 app.use('/api/auth', authGoogle)

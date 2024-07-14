@@ -38,6 +38,8 @@ const update = async (req, res, next) => {
           process.env.JW_TOKEN
         );
 
+      
+        
         // Send the new token in the response
         res.status(200).json({ user, token: newToken });
       }

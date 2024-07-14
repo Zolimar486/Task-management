@@ -1,18 +1,20 @@
 const Task = require('../models/Task')
 
+const task= async (req, res, next) => {
+  try {
+    console.log('Received request to create a task:', req.body);
 
-const task= async(req,res, next)=>{
-  try{
-    const newTask = new Task(req.body)
-    const saveTask = await newTask.save()
+    const newTask = new Task(req.body);
+    const savedTask = await newTask.save();
 
-    res.status(200).json(saveTask)
-  }catch(err){
-    next(err)
+    console.log('Task successfully saved:', savedTask);
+
+    res.status(200).json(savedTask);
+  } catch (err) {
+    console.error('Error creating task:', err);
+    next(err);
   }
-
-}
-
+};
   
   
 

@@ -1,54 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Home from './Pages/Home';
-import User from './Pages/User';
-import Register from './Pages/Register';
-import Status from './Pages/Status';
-import Login from './Pages/Login';
-import Settings from './Pages/Settings';
-
-
+import logo from "./logo.svg";
+import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./Pages/Home";
+import User from "./Pages/User";
+import Register from "./Pages/Register";
+import Status from "./Pages/Status";
+import Login from "./Pages/Login";
+import Settings from "./Pages/Settings";
+import Alive from "./components/Alive";
 
 function App() {
-
-
-   
-
   return (
     <div className="App">
-     
-     <Router>
-     <Switch>
-      <Route exact path="/">
-        <Home/>
-
-      </Route>
-      <Route  path="/user">
-        <User/>
-
-      </Route>
-      <Route  path="/register">
-        <Register/>
-
-      </Route>
-      <Route  path="/login">
-        <Login/>
-
-      </Route>
-      <Route  path="/status">
-        <Status/>
-
-      </Route>
-      <Route  path="/settings/:id">
-        <Settings/>
-
-      </Route>
-
-
-     </Switch>
-     </Router>
-     
+      <Router>
+        <Alive />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/user">
+            <User />
+          </Route>
+          <Route path="/register">
+            <Register />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/status">
+            <Status />
+          </Route>
+          <Route path="/settings/:id">
+            <Settings />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
