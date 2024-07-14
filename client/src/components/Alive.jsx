@@ -16,7 +16,7 @@ export default function Alive(){
 
     pingServer()
     
-    const interval = setInterval(pingServer, 5 * 60 * 1000)
+    const interval = setInterval(pingServer, 1 * 60 * 1000)
     
     return ()=> clearInterval(interval)
   },[])
